@@ -24,13 +24,7 @@ camera.position.set(6, 8, 14);
 // Has to be done everytime we update the camera position.
 orbit.update();
 
-// Creates a 12 by 12 grid helper.
-const gridHelper = new THREE.GridHelper(12, 12);
-scene.add(gridHelper);
-
-// Creates an axes helper with an axis length of 4.
-const axesHelper = new THREE.AxesHelper(4);
-scene.add(axesHelper);
+renderer.setClearColor(0xfefefe);
 
 function animate() {
     renderer.render(scene, camera);
