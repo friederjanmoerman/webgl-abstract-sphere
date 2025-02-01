@@ -24,10 +24,27 @@ camera.position.set(6, 8, 14);
 // Has to be done everytime we update the camera position.
 orbit.update();
 
-renderer.setClearColor(0xfefefe);
+renderer.setClearColor(0o0);
 
+const uniforms = {
+    u_time: { value: 0.0 }
+};
+  
+const mat = new THREE.ShaderMaterial({
+    wireframe: true,
+    uniforms,
+    vertexShader: document.getElementById('vertexshader').textContent,
+    fragmentShader: document.getElementById('fragmentshader').textContent,
+});
+  
+const geo = new THREE.IcosahedronGeometry(4, 30);
+const mesh = new THREE.Mesh(geo, mat);
+scene.add(mesh);
+
+const clock = new THREE.Clock();
 function animate() {
-    renderer.render(scene, camera);
+  uniforms.u_time.value = clock.getElapsedTime();
+  renderer.render(scene, camera);
 }
 
 renderer.setAnimationLoop(animate);
